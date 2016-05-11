@@ -12,13 +12,15 @@ const BrowserWindow = electron.BrowserWindow;
 
 var mainWindow;
 var pqWindow;
+var terminalWindow;
 
 function createLoginWindow () {
     // Create the browser window.
     mainWindow = new BrowserWindow({
         width: 400,
         height: 300,
-        resizable: false
+        transparent: true,
+        alwaysOnTop: false
     });
 
     // and load the index.html of the app.
@@ -36,27 +38,44 @@ function createLoginWindow () {
     });
 }
 
+function createTerminalsWindow () {
+    terminalWindow = new BrowserWindow({
+        width: 400,
+        height: 300,
+        transparent: true,
+        alwaysOnTop: false
+    });
+
+    terminalWindow.loadURL('file://' + __dirname + '/views/terminals.html');
+    //terminalWindow.webContents.openDevTools();
+    terminalWindow.on('closed', function () {
+        terminalWindow = null
+    });
+    mainWindow.close();
+}
+
 function createProcessQueueWindow () {
     // Create the browser window.
     pqWindow = new BrowserWindow({
         width: 400,
         height: 200,
-        resizeable: false,
         transparent: true,
         alwaysOnTop: false
     });
     pqWindow.loadURL('file://' + __dirname + '/views/index.html');
+    //pqWindow.webContents.openDevTools();
     pqWindow.on('closed', function () {
         pqWindow = null
     });
-    mainWindow.close();
+    terminalWindow.close();
 }
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 app.on('ready', createLoginWindow);
-ipc.on('login-success', createProcessQueueWindow);
+ipc.on('login-success', createTerminalsWindow);
+ipc.on('terminal-chosen', createProcessQueueWindow);
 
 // Quit when all windows are closed.
 app.on('window-all-closed', function () {

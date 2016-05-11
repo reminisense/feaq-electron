@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.20/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</head>
+<body ng-app="FeatherQ">
+<div class="" id="" role="" ng-controller="terminalsController">
+    <div class="">
+        <div class="">
+            <div class="">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Choose Terminals</h4>
+            </div>
+            <div class="">
+                <table class="table table-responsive table-condense table-striped" ng-repeat="service in services">
+                    <thead>
+                    <tr>
+                        <th>{{ service.name }}</th>
+                        <th class="text-right"><small></small></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="terminal in service.terminals">
+                        <td>{{ terminal.name }}</td>
+                        <td class="text-right">
+                            <button ng-if="!isAssignedUser(user_id, terminal.terminal_id)" class="btn btn-sm disabled">Process</button>
+                            <a ng-if="isAssignedUser(user_id, terminal.terminal_id)" class="btn btn-sm btn-cyan" ng-click="selectTerminal()">Process</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+    // You can also require other files to run in this process
+    require('./../renderer.js');
+    require('./../angular/terminalsController.js');
+</script>
+</html>
