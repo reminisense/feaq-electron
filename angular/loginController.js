@@ -15,6 +15,8 @@ app.controller('loginController', function($scope, $http) {
             .success(function(response){
                 if(response.success){
                     ipc.send('login-success');
+                }else{
+                    alert('Fail');
                 }
             });
     };
