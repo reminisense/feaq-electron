@@ -5,13 +5,13 @@
 var ipc = require('electron').ipcRenderer;
 var app = angular.module('FeatherQ', []);
 app.controller('terminalsController', function($scope, $http) {
-    $scope.app_url = 'http://localhost:8000';
+    $scope.app_url = 'http://four.featherq.com';
     $scope.services = [];
     $scope.terminals = [];
 
     //to be changed
-    $scope.user_id = 43;
-    $scope.business_id = 168;
+    $scope.user_id = 72;
+    $scope.business_id = 193;
 
 
     $scope.getServices = function(){

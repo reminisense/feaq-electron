@@ -4,7 +4,7 @@
 var ipc = require('electron').ipcRenderer;
 var app = angular.module('FeatherQ', []);
 app.controller('loginController', function($scope, $http) {
-    $scope.app_url = 'http://localhost:8000';
+    $scope.app_url = 'http://four.featherq.com';
 
     $scope.email = '';
     $scope.password = '';

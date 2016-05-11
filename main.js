@@ -17,8 +17,8 @@ var terminalWindow;
 function createLoginWindow () {
     // Create the browser window.
     mainWindow = new BrowserWindow({
-        width: 400,
-        height: 300,
+        width: 800,
+        height: 800,
         transparent: true,
         alwaysOnTop: false
     });
@@ -27,7 +27,7 @@ function createLoginWindow () {
     mainWindow.loadURL('file://' + __dirname + '/views/login.html');
 
     // Open the DevTools.
-    //mainWindow.webContents.openDevTools();
+    mainWindow.webContents.openDevTools();
 
     // Emitted when the window is closed.
     mainWindow.on('closed', function () {

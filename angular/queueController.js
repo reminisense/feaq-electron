@@ -3,13 +3,13 @@
  */
 var app = angular.module('FeatherQ', []);
 app.controller('queueController', function($scope, $http){
-    $scope.app_url = 'http://localhost:8000';
+    $scope.app_url = 'http://four.featherq.com';
     $scope.websocket_url = "ws://188.166.234.33:443/socket/server.php";
     $scope.websocket = new WebSocket($scope.websocket_url);
 
-    $scope.terminal_id = 492;
-    $scope.service_id = 178;
-    $scope.business_id = 168;
+    $scope.terminal_id = 617;
+    $scope.service_id = 253;
+    $scope.business_id = 193;
 
     $scope.current_number = null;
     $scope.next_number = null;
