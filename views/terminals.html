@@ -25,11 +25,10 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr ng-repeat="terminal in service.terminals">
+                    <tr ng-repeat="terminal in service.terminals" ng-if="isAssignedUser(user_id, terminal.terminal_id)">
                         <td>{{ terminal.name }}</td>
                         <td class="text-right">
-                            <button ng-if="!isAssignedUser(user_id, terminal.terminal_id)" class="btn btn-sm disabled">Process</button>
-                            <a ng-if="isAssignedUser(user_id, terminal.terminal_id)" class="btn btn-sm btn-cyan" ng-click="selectTerminal()">Process</a>
+                            <a class="btn btn-sm btn-success" ng-click="selectTerminal(service.service_id, terminal.terminal_id)">Process</a>
                         </td>
                     </tr>
                     </tbody>

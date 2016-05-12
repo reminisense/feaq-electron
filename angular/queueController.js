@@ -1,15 +1,19 @@
 /**
  * Created by USER on 5/10/2016.
  */
+
+var ipc = require('electron').ipcRenderer;
+var remote = require('electron').remote;
+
 var app = angular.module('FeatherQ', []);
 app.controller('queueController', function($scope, $http){
-    $scope.app_url = 'http://four.featherq.com';
-    $scope.websocket_url = "ws://188.166.234.33:443/socket/server.php";
+    $scope.app_url = remote.getGlobal('urls').app_url;
+    $scope.websocket_url = remote.getGlobal('urls').websocket_url;
     $scope.websocket = new WebSocket($scope.websocket_url);
 
-    $scope.terminal_id = 617;
-    $scope.service_id = 253;
-    $scope.business_id = 193;
+    $scope.business_id = remote.getGlobal('ids').business_id;
+    $scope.service_id = remote.getGlobal('ids').service_id;
+    $scope.terminal_id = remote.getGlobal('ids').terminal_id;
 
     $scope.current_number = null;
     $scope.next_number = null;
