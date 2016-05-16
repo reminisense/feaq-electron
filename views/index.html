@@ -7,22 +7,38 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.20/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="../css/star-rating.css">
 </head>
 <body ng-app="FeatherQ" ng-cloak>
 <div class="" ng-controller="queueController">
-    <div class="col-xs-12">
-        <div class="col-xs-9 col-xs-offset-3 text-right">
-            <h3>{{ current_number ? current_number.priority_number : next_number }}</h3>
-        </div>
-    </div>
     <div ng-if="called == false">
-        <button class="col-xs-3 btn btn-primary" style="border-radius: 0;" ng-click="drop()"><span class="glyphicon glyphicon-trash"></span></button>
-        <button class="col-xs-9 btn btn-primary" style="border-radius: 0;" ng-click="callPressed()">CALL</span></button>
+        <button class="col-xs-4 btn btn-primary" style="border-radius: 0;" ng-click="drop()"><span class="glyphicon glyphicon-trash"></span></button>
+        <button class="col-xs-8 btn btn-primary" style="border-radius: 0;" ng-click="callPressed()">CALL</span></button>
     </div>
     <div ng-if="called == true">
-        <button class="col-xs-3 btn btn-success" style="border-radius: 0;" ng-click="drop()"><span class="glyphicon glyphicon-trash"></span></button>
-        <button class="col-xs-3 btn btn-success" style="border-radius: 0;" ng-click="done()">DONE</span></button>
-        <button class="col-xs-6 btn btn-success" style="border-radius: 0;" ng-click="next()">NEXT</span></button>
+        <button class="col-xs-4 btn btn-success" style="border-radius: 0;" ng-click="drop()"><span class="glyphicon glyphicon-trash"></span></button>
+        <button class="col-xs-4 btn btn-success" style="border-radius: 0;" ng-click="done()">DONE</span></button>
+        <button class="col-xs-4 btn btn-success" style="border-radius: 0;" ng-click="next()">NEXT</span></button>
+    </div>
+    <div class="col-xs-12">
+        <div class="col-xs-4 text-center">
+            <strong>In Line:</strong>
+            <h2>{{ numbers_in_line }}</h2>
+        </div>
+        <div class="col-xs-8 text-center">
+            <strong>Current Number:</strong>
+            <h1>{{ current_number ? current_number.priority_number : next_number }}</h1>
+            <form class="star-rating-form" ng-show="current_number.email && current_number.time_called > 0">
+                <span class="star-rating">
+                    <input type="radio" name="rating" ng-model="rating" value="1"><i></i>
+                    <input type="radio" name="rating" ng-model="rating" value="2"><i></i>
+                    <input type="radio" name="rating" ng-model="rating" value="3"><i></i>
+                    <input type="radio" name="rating" ng-model="rating" value="4"><i></i>
+                    <input type="radio" name="rating" ng-model="rating" value="5"><i></i>
+                </span>
+            </form>
+        </div>
     </div>
 </div>
 </body>
