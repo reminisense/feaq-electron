@@ -4,7 +4,7 @@ const development = false;
 
 
 global.urls = {
-    app_url: 'http://localhost:8000',
+    app_url: development ? 'http://localhost:8000' : 'http://four.featherq.com',
     websocket_url: "ws://188.166.234.33:443/socket/server.php"
 };
 
