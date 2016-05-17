@@ -1,5 +1,7 @@
 const electron = require('electron');
 const ipc = require('ipc');
+const development = false;
+
 
 global.urls = {
     app_url: 'http://localhost:8000',
@@ -7,8 +9,8 @@ global.urls = {
 };
 
 global.windowProperties = {
-    width: 800,
-    height: 800,
+    width: development ? 800 : 400,
+    height: development ? 800 : 300,
     transparent: true,
     alwaysOnTop: false
 };
@@ -41,7 +43,7 @@ function createLoginWindow () {
     mainWindow.loadURL('file://' + __dirname + '/views/login.html');
 
     // Open the DevTools.
-    mainWindow.webContents.openDevTools();
+    if(development) mainWindow.webContents.openDevTools();
 
     // Emitted when the window is closed.
     mainWindow.on('closed', function () {
@@ -56,7 +58,7 @@ function createTerminalsWindow () {
     terminalWindow = new BrowserWindow(global.windowProperties);
 
     terminalWindow.loadURL('file://' + __dirname + '/views/terminals.html');
-    terminalWindow.webContents.openDevTools();
+    if(development) terminalWindow.webContents.openDevTools();
     terminalWindow.on('closed', function () {
         terminalWindow = null
     });
@@ -67,7 +69,7 @@ function createProcessQueueWindow () {
     // Create the browser window.
     pqWindow = new BrowserWindow(global.windowProperties);
     pqWindow.loadURL('file://' + __dirname + '/views/index.html');
-    pqWindow.webContents.openDevTools();
+    if(development) pqWindow.webContents.openDevTools();
     pqWindow.on('closed', function () {
         pqWindow = null
     });

@@ -13,13 +13,13 @@
 <body ng-app="FeatherQ" ng-cloak>
 <div class="" ng-controller="queueController">
     <div ng-if="called == false">
-        <button class="col-xs-4 btn btn-primary" style="border-radius: 0;" ng-click="drop()"><span class="glyphicon glyphicon-trash"></span></button>
-        <button class="col-xs-8 btn btn-primary" style="border-radius: 0;" ng-click="callPressed()">CALL</span></button>
+        <button ng-disabled="is_processing" class="col-xs-4 btn btn-primary" style="border-radius: 0;" ng-click="drop()"><span class="glyphicon glyphicon-trash"></span></button>
+        <button ng-disabled="is_processing" class="col-xs-8 btn btn-primary" style="border-radius: 0;" ng-click="callPressed()">CALL</span></button>
     </div>
     <div ng-if="called == true">
-        <button class="col-xs-4 btn btn-success" style="border-radius: 0;" ng-click="drop()"><span class="glyphicon glyphicon-trash"></span></button>
-        <button class="col-xs-4 btn btn-success" style="border-radius: 0;" ng-click="done()">DONE</span></button>
-        <button class="col-xs-4 btn btn-success" style="border-radius: 0;" ng-click="next()">NEXT</span></button>
+        <button ng-disabled="is_processing" class="col-xs-4 btn btn-success" style="border-radius: 0;" ng-click="drop()"><span class="glyphicon glyphicon-trash"></span></button>
+        <button ng-disabled="is_processing" class="col-xs-4 btn btn-success" style="border-radius: 0;" ng-click="done()">DONE</span></button>
+        <button ng-disabled="is_processing" class="col-xs-4 btn btn-success" style="border-radius: 0;" ng-click="next()">NEXT</span></button>
     </div>
     <div class="col-xs-12">
         <div class="col-xs-4 text-center">

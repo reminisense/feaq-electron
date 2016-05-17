@@ -21,6 +21,8 @@ app.controller('queueController', function($scope, $http){
     $scope.called = false;
     $scope.rating = 3;
 
+    $scope.is_processing = true;
+
     $scope.callPressed = function(){
         if($scope.current_number){
             $scope.call();
@@ -30,59 +32,77 @@ app.controller('queueController', function($scope, $http){
     };
 
     $scope.issueAndCall = function(){
+        $scope.is_processing = true;
         $http.post($scope.app_url + '/issuenumber/insertspecific/' + $scope.service_id + '/' + $scope.terminal_id, {priority_number : $scope.next_number})
             .success(function(response){
                 $scope.current_number = response.number;
                 $scope.call();
+                $scope.is_processing = false;
             });
     };
 
     $scope.call = function(){
+        $scope.is_processing = true;
         $http.get($scope.app_url + '/processqueue/callnumber/' + $scope.current_number.transaction_number + '/' + $scope.terminal_id)
             .success(function(response){
                 $scope.updateBroadcast();
+                $scope.is_processing = false;
             });
     };
 
     $scope.drop = function(){
+        $scope.is_processing = true;
         $http.get($scope.app_url + '/processqueue/dropnumber/' + $scope.current_number.transaction_number)
             .success(function(response){
                 $scope.updateBroadcast();
-                $http.get($scope.app_url + '/rating/userratings/'+ 0 + '/' + $scope.current_number.email + '/' + $scope.terminal_id + '/' + 3 + '/' + $scope.current_number.transaction_number);
-                $scope.rating = 3;
+                if($scope.current_number.verified_email){
+                    $http.get($scope.app_url + '/rating/userratings/'+ 0 + '/' + $scope.current_number.email + '/' + $scope.terminal_id + '/' + 3 + '/' + $scope.current_number.transaction_number);
+                    $scope.rating = 3;
+                }
+                $scope.is_processing = false;
             });
     };
 
     $scope.done = function(){
+        $scope.is_processing = true;
         $http.get($scope.app_url + '/processqueue/servenumber/' + $scope.current_number.transaction_number)
             .success(function(response){
                 $scope.updateBroadcast();
-                $http.get($scope.app_url + '/rating/userratings/'+ $scope.rating + '/' + $scope.current_number.email + '/' + $scope.terminal_id + '/' + 3 + '/' + $scope.current_number.transaction_number);
-                $scope.rating = 3;
+                if($scope.current_number.verified_email) {
+                    $http.get($scope.app_url + '/rating/userratings/'+ $scope.rating + '/' + $scope.current_number.email + '/' + $scope.terminal_id + '/' + 3 + '/' + $scope.current_number.transaction_number);
+                    $scope.rating = 3;
+                }
+                $scope.is_processing = false;
             });
     };
 
     $scope.next = function(){
+        $scope.is_processing = true;
         $http.get($scope.app_url + '/processqueue/servenumber/' + $scope.current_number.transaction_number)
             .success(function(response){
-                $http.get($scope.app_url + '/rating/userratings/'+ $scope.rating + '/' + $scope.current_number.email + '/' + $scope.terminal_id + '/' + 3 + '/' + $scope.current_number.transaction_number);
-                $scope.rating = 3;
+                if($scope.current_number.verified_email) {
+                    $http.get($scope.app_url + '/rating/userratings/'+ $scope.rating + '/' + $scope.current_number.email + '/' + $scope.terminal_id + '/' + 3 + '/' + $scope.current_number.transaction_number);
+                    $scope.rating = 3;
+                }
                 $http.get($scope.app_url + '/processqueue/allnumbers/' + $scope.service_id + '/' + $scope.terminal_id)
                     .success(function(response){
                         $scope.current_number = response.numbers.unprocessed_numbers[0];
                         $scope.next_number = response.numbers.next_number;
                         $scope.callPressed();
                     });
+                $scope.is_processing = false;
             });
     }
 
     $scope.getNextNumber = function(){
+        $scope.is_processing = true;
         $http.get($scope.app_url + '/processqueue/allnumbers/' + $scope.service_id + '/' + $scope.terminal_id)
             .success(function(response){
                 $scope.current_number = response.numbers.unprocessed_numbers[0];
                 $scope.called = $scope.current_number && $scope.current_number.time_called ? true : false;
                 $scope.next_number = response.numbers.next_number;
                 $scope.numbers_in_line = response.numbers.uncalled_numbers.length + response.numbers.timebound_numbers.length;
+                $scope.is_processing = false;
             });
     };
 
