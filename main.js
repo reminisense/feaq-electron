@@ -67,7 +67,12 @@ function createTerminalsWindow () {
 
 function createProcessQueueWindow () {
     // Create the browser window.
-    pqWindow = new BrowserWindow(global.windowProperties);
+    pqWindow = new BrowserWindow({
+        width: development ? 800 : 400,
+        height: development ? 800 : 200,
+        transparent: true,
+        alwaysOnTop: false
+    });
     pqWindow.loadURL('file://' + __dirname + '/views/index.html');
     if(development) pqWindow.webContents.openDevTools();
     pqWindow.on('closed', function () {

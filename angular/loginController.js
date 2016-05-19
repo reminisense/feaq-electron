@@ -8,6 +8,7 @@ var app = angular.module('FeatherQ', []);
 app.controller('loginController', function($scope, $http) {
     $scope.app_url = remote.getGlobal('urls').app_url;
     $scope.user_id = remote.getGlobal('ids').user_id;
+    $scope.loading = false;
 
     $scope.businesses = [];
 
@@ -16,8 +17,10 @@ app.controller('loginController', function($scope, $http) {
     $scope.login_url = '';
 
     $scope.login = function () {
+        $scope.loading = true;
         $http.post($scope.app_url + '/user/email-login', {email: $scope.email, password: $scope.password})
             .success(function(response){
+                $scope.loading = false;
                 if(response.success){
                     $scope.getAssignedBusinesses();
                 }else{
@@ -27,11 +30,13 @@ app.controller('loginController', function($scope, $http) {
     };
 
     $scope.getAssignedBusinesses = function () {
+        $scope.loading = true;
         $http.get($scope.app_url + '/business/assigned-businesses').success(function(response){
             if(response.user_id){
                 remote.getGlobal('ids').user_id = response.user_id;
                 $scope.user_id = response.user_id;
                 $scope.businesses = response.businesses;
+                $scope.loading = false;
             }
         });
     };

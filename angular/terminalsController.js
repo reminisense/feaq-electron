@@ -20,7 +20,7 @@ app.controller('terminalsController', function($scope, $http) {
         $http.get($scope.app_url + '/business/businessdetails/' + $scope.business_id).success(function(response){
             $scope.services = response.business.services;
             $scope.terminals = response.business.terminals;
-        })
+        });
     };
 
     $scope.selectTerminal = function(service_id, terminal_id){

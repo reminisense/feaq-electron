@@ -21,7 +21,7 @@
                 <input class="form-control" type="password" ng-model="password"/>
             </div>
             <div class="form-group text-right">
-                <button class="btn btn-lg btn-primary" type="submit">Login</button>
+                <button class="btn btn-lg btn-primary" type="submit" ng-disabled="loading">LOGIN <span ng-show="loading" class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span></button>
             </div>
         </form>
     </div>
