@@ -10,12 +10,11 @@
 </head>
 <body ng-app="FeatherQ">
 <div ng-controller="loginController">
-    <div class="clearfix" style="margin-top: 20px;">
-        <div class="col-xs-4 text-center">
-            <img src="../images/ms-icon-70x70.png "/>
-            <h2>FeatherQ</h2>
+    <div class="clearfix">
+        <div class="col-xs-12 text-center" style="margin-top: 10px; margin-bottom: 10px;">
+            <img src="../images/FeatherQ-logo.png"/>
         </div>
-        <div class="col-xs-8" ng-show="!user_id">
+        <div class="col-xs-12" ng-show="!user_id">
             <form ng-submit="login()">
                 <div class="form-group">
                     <input class="form-control" type="text" ng-model="email" placeholder="Email"/>
@@ -23,20 +22,20 @@
                 <div class="form-group">
                     <input class="form-control" type="password" ng-model="password" placeholder="Password"/>
                 </div>
-                <div class="form-group text-right">
-                    <button class="btn btn-primary" type="submit" ng-disabled="loading">LOGIN <span ng-show="loading" class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span></button>
+                <div class="form-group col-xs-8 col-xs-offset-2 text-right">
+                    <button class="btn btn-primary form-control" type="submit" ng-disabled="loading">LOGIN <span ng-show="loading" class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span></button>
                 </div>
             </form>
         </div>
-        <div class="col-xs-8" ng-show="user_id">
+        <div class="col-xs-12" ng-show="user_id">
             <div class="form-group">
                 <select class="form-control" ng-model="selected_business">
                     <option value="0">Select A Business</option>
                     <option ng-repeat="business in businesses" value="{{business.business_id}}">{{ business.name }}</option>
                 </select>
             </div>
-            <div class="form-group text-right">
-                <button class="btn btn-primary" ng-click="selectBusiness(selected_business)">SELECT</button>
+            <div class="form-group col-xs-8 col-xs-offset-2 text-right">
+                <button class="btn btn-primary form-control" ng-click="selectBusiness(selected_business)">SELECT</button>
             </div>
         </div>
     </div>
