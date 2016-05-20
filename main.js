@@ -12,7 +12,8 @@ global.windowProperties = {
     width: development ? 800 : 400,
     height: development ? 800 : 300,
     transparent: true,
-    alwaysOnTop: false
+    alwaysOnTop: false,
+    icon: 'images/favicon-32x32.png'
 };
 
 global.ids = {

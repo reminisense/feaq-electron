@@ -11,6 +11,7 @@ app.controller('loginController', function($scope, $http) {
     $scope.loading = false;
 
     $scope.businesses = [];
+    $scope.selected_business = 0;
 
     $scope.email = '';
     $scope.password = '';
@@ -26,6 +27,8 @@ app.controller('loginController', function($scope, $http) {
                 }else{
                     alert('Fail');
                 }
+            }).error(function(response){
+                alert(response.error);
             });
     };
 
@@ -36,6 +39,11 @@ app.controller('loginController', function($scope, $http) {
                 remote.getGlobal('ids').user_id = response.user_id;
                 $scope.user_id = response.user_id;
                 $scope.businesses = response.businesses;
+                $scope.loading = false;
+            }
+        }).error(function(response){
+            if(response.error.message){
+                alert(response.error.message);
                 $scope.loading = false;
             }
         });
