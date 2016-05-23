@@ -4,7 +4,7 @@ const development = false;
 
 
 global.urls = {
-    app_url: development || true? 'http://localhost:8000' : 'http://four.featherq.com',
+    app_url: development ? 'http://localhost:8000' : 'http://four.featherq.com',
     websocket_url: "ws://188.166.234.33:443/socket/server.php"
 };
 
@@ -72,7 +72,8 @@ function createProcessQueueWindow () {
         width: development ? 800 : 400,
         height: development ? 800 : 200,
         transparent: true,
-        alwaysOnTop: false
+        alwaysOnTop: false,
+        icon: 'images/favicon-32x32.png'
     });
     pqWindow.loadURL('file://' + __dirname + '/views/index.html');
     if(development) pqWindow.webContents.openDevTools();
