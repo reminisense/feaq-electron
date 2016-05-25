@@ -14,7 +14,7 @@
 <div class="" ng-controller="queueController">
     <div class="col-xs-12" style="min-height: 107px;">
         <div class="col-xs-4 text-center">
-            <strong>Waiting: </strong>
+            <strong><span class="glyphicon glyphicon-user"></span> Waiting: </strong>
             <h3>{{ numbers_in_line }}</h3>
         </div>
         <div class="col-xs-8 text-center">
@@ -43,12 +43,12 @@
     </div>
     <div ng-if="called == false">
         <button ng-disabled="is_processing" class="col-xs-4 btn btn-primary" style="border-radius: 0;" ng-click="drop()"><span class="glyphicon glyphicon-trash"></span></button>
-        <button ng-disabled="is_processing" class="col-xs-8 btn btn-primary" style="border-radius: 0;" ng-click="callPressed()">CALL</span></button>
+        <button ng-disabled="is_processing" class="col-xs-8 btn btn-primary" style="border-radius: 0;" ng-click="callPressed()"><span class="glyphicon glyphicon-bell"></span> CALL</button>
     </div>
     <div ng-if="called == true">
         <button ng-disabled="is_processing" class="col-xs-4 btn btn-success" style="border-radius: 0;" ng-click="drop()"><span class="glyphicon glyphicon-trash"></span></button>
-        <button ng-disabled="is_processing" class="col-xs-4 btn btn-success" style="border-radius: 0;" ng-click="done()">DONE</span></button>
-        <button ng-disabled="is_processing" class="col-xs-4 btn btn-success" style="border-radius: 0;" ng-click="next()">NEXT</span></button>
+        <button ng-disabled="is_processing" class="col-xs-4 btn btn-success" style="border-radius: 0;" ng-click="done()"><span class="glyphicon glyphicon-ok"></span> DONE</button>
+        <button ng-disabled="is_processing" class="col-xs-4 btn btn-success" style="border-radius: 0;" ng-click="next()"><span class="glyphicon glyphicon-forward"></span> NEXT</button>
     </div>
 </div>
 </body>
