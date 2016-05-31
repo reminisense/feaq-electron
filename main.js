@@ -1,5 +1,5 @@
 const electron = require('electron');
-const ipc = require('ipc');
+const ipc = require('electron').ipcMain;
 const development = false;
 
 
@@ -32,9 +32,10 @@ const BrowserWindow = electron.BrowserWindow;
 // be closed automatically when the JavaScript object is garbage collected.
 //var mainWindow;
 
-var mainWindow;
-var pqWindow;
-var terminalWindow;
+var mainWindow = null;
+var pqWindow = null;
+var terminalWindow = null;
+
 
 function createLoginWindow () {
     // Create the browser window.
@@ -53,17 +54,31 @@ function createLoginWindow () {
         // when you should delete the corresponding element.
         mainWindow = null
     });
+
+    //close windows
+    if(terminalWindow !== null){
+        terminalWindow.close();
+    }
+    if(pqWindow !== null){
+        pqWindow.close();
+    }
 }
 
 function createTerminalsWindow () {
     terminalWindow = new BrowserWindow(global.windowProperties);
-
     terminalWindow.loadURL('file://' + __dirname + '/views/terminals.html');
     if(development) terminalWindow.webContents.openDevTools();
     terminalWindow.on('closed', function () {
-        terminalWindow = null
+        terminalWindow = null;
     });
-    mainWindow.close();
+
+    //close windows
+    if(mainWindow !== null){
+        mainWindow.close();
+    }
+    if(pqWindow !== null){
+        pqWindow.close();
+    }
 }
 
 function createProcessQueueWindow () {
@@ -78,17 +93,27 @@ function createProcessQueueWindow () {
     pqWindow.loadURL('file://' + __dirname + '/views/index.html');
     if(development) pqWindow.webContents.openDevTools();
     pqWindow.on('closed', function () {
-        pqWindow = null
+        pqWindow = null;
     });
-    terminalWindow.close();
+
+    //close windows
+    if(mainWindow !== null){
+        mainWindow.close();
+    }
+    if(terminalWindow !== null){
+        terminalWindow.close();
+    }
 }
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
+app.dock.setIcon('images/favicon-32x32.png');
+
+
 app.on('ready', createLoginWindow);
-ipc.on('login-success', createTerminalsWindow);
 ipc.on('terminal-chosen', createProcessQueueWindow);
+ipc.on('login-success', createTerminalsWindow);
 
 // Quit when all windows are closed.
 app.on('window-all-closed', function () {
@@ -102,8 +127,9 @@ app.on('window-all-closed', function () {
 app.on('activate', function () {
     // On OS X it's common to re-create a window in the app when the
     // dock icon is clicked and there are no other windows open.
-    if (mainWindow === null) {
-        //createWindow();
+    if (mainWindow === null && pqWindow === null && terminalWindow === null) {
+        global.ids.user_id = null;
+        createLoginWindow();
     }
 });
 

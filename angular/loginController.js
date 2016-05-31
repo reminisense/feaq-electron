@@ -35,7 +35,11 @@ app.controller('loginController', function($scope, $http) {
     $scope.getAssignedBusinesses = function () {
         $scope.loading = true;
         $http.get($scope.app_url + '/business/assigned-businesses').success(function(response){
-            if(response.user_id){
+            if(remote.getGlobal('ids').business_id !== null){
+                remote.getGlobal('ids').user_id = response.user_id;
+                $scope.selectBusiness(remote.getGlobal('ids').business_id);
+                $scope.loading = false;
+            }else if(response.user_id){
                 remote.getGlobal('ids').user_id = response.user_id;
                 $scope.user_id = response.user_id;
                 $scope.businesses = response.businesses;
