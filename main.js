@@ -11,7 +11,7 @@ global.urls = {
 global.windowProperties = {
     width: development ? 800 : 400,
     height: development ? 800 : 300,
-    transparent: true,
+    transparent: false,
     alwaysOnTop: false,
     icon: 'images/favicon-32x32.png'
 };
@@ -83,11 +83,12 @@ function createTerminalsWindow () {
 
 function createProcessQueueWindow () {
     // Create the browser window.
+    var pqHeight = process.platform !== 'darwin' ? 200 : 163;
     pqWindow = new BrowserWindow({
         width: development ? 800 : 400,
-        height: development ? 800 : 200,
-        transparent: true,
-        alwaysOnTop: false,
+        height: development ? 800 : pqHeight,
+        transparent: false,
+        alwaysOnTop: true,
         icon: 'images/favicon-32x32.png'
     });
     pqWindow.loadURL('file://' + __dirname + '/views/index.html');
