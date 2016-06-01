@@ -109,8 +109,9 @@ function createProcessQueueWindow () {
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
-app.dock.setIcon('images/favicon-32x32.png');
-
+if (process.platform === 'darwin') {
+    app.dock.setIcon('images/favicon-32x32.png');
+}
 
 app.on('ready', createLoginWindow);
 ipc.on('terminal-chosen', createProcessQueueWindow);
