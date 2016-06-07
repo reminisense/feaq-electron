@@ -67,7 +67,7 @@ function createLoginWindow () {
 
 function createTerminalsWindow () {
     //save json file
-    fs.writeFile('app/settings.json', JSON.stringify(global.ids), function(err){
+    fs.writeFile('app/settings.json', JSON.stringify(global.ids), 'utf-8', function(err){
         if(err == undefined){
             console.log("Settings saved");
         }else{
