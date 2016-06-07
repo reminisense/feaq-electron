@@ -1,10 +1,11 @@
 const electron = require('electron');
 const ipc = require('electron').ipcMain;
-const development = false;
+const fs = require('fs');
+const development = true;
 
 
 global.urls = {
-    app_url: development ? 'http://localhost:8000' : 'http://four.featherq.com',
+    app_url: development && false ? 'http://localhost:8000' : 'http://four.featherq.com',
     websocket_url: "ws://188.166.234.33:443/socket/server.php"
 };
 
@@ -65,6 +66,9 @@ function createLoginWindow () {
 }
 
 function createTerminalsWindow () {
+    //save json file
+    fs.writeFile('settings.json', JSON.stringify(global.ids));
+
     terminalWindow = new BrowserWindow(global.windowProperties);
     terminalWindow.loadURL('file://' + __dirname + '/views/terminals.html');
     if(development) terminalWindow.webContents.openDevTools();
