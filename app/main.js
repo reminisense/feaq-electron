@@ -1,11 +1,11 @@
 const electron = require('electron');
 const ipc = require('electron').ipcMain;
 const fs = require('fs');
-const development = true;
+const development = false;
 
 
 global.urls = {
-    app_url: development && false ? 'http://localhost:8000' : 'http://four.featherq.com',
+    app_url: development ? 'http://localhost:8000' : 'http://four.featherq.com',
     websocket_url: "ws://188.166.234.33:443/socket/server.php"
 };
 
