@@ -37,7 +37,7 @@ app.controller('loginController', function($scope, $http) {
         $scope.loading = true;
         $http.get($scope.app_url + '/business/assigned-businesses').success(function(response){
             var fileData = null;
-            fs.readFile('settings.json', 'utf-8', function(err, fileContent){
+            fs.readFile('app/settings.json', 'utf-8', function(err, fileContent){
                 if(fileContent != undefined){
                     fileData =  JSON.parse(fileContent);
                     remote.getGlobal('ids').user_id = response.user_id;

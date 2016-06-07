@@ -2,10 +2,10 @@
   "name": "feaq-electron",
   "version": "1.0.0",
   "description": "A minimal FeatherQ desktop application",
-  "main": "main.js",
+  "main": "app/main.js",
   "scripts": {
     "start": "electron .",
-    "build": "electron-packager . FeatherQ && cp images/favicon-32x32.png FeatherQ.app/Contents/Resources/favicon-32x32.png"
+    "build": "electron-packager . FeatherQ && cp app/images/favicon-32x32.png FeatherQ.app/Contents/Resources/favicon-32x32.png"
   },
   "author": "Reminisense",
   "license": "MIT",

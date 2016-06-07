@@ -67,7 +67,13 @@ function createLoginWindow () {
 
 function createTerminalsWindow () {
     //save json file
-    fs.writeFile('settings.json', JSON.stringify(global.ids));
+    fs.writeFile('app/settings.json', JSON.stringify(global.ids), function(err){
+        if(err == undefined){
+            console.log("Settings saved");
+        }else{
+            console.log("Settings not saved");
+        }
+    });
 
     terminalWindow = new BrowserWindow(global.windowProperties);
     terminalWindow.loadURL('file://' + __dirname + '/views/terminals.html');
@@ -114,7 +120,7 @@ function createProcessQueueWindow () {
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 if (process.platform === 'darwin') {
-    app.dock.setIcon('images/favicon-32x32.png');
+    app.dock.setIcon('app/images/favicon-32x32.png');
 }
 
 app.on('ready', createLoginWindow);
