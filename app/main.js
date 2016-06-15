@@ -1,11 +1,11 @@
 const electron = require('electron');
 const ipc = require('electron').ipcMain;
 const fs = require('fs');
-const development = false;
+const development = true;
 
 
 global.urls = {
-    app_url: development ? 'http://localhost:8000' : 'http://four.featherq.com',
+    app_url: 'http://four.featherq.com',
     websocket_url: "ws://188.166.234.33:443/socket/server.php"
 };
 
@@ -22,6 +22,12 @@ global.ids = {
     business_id: null,
     service_id: null,
     terminal_id: null
+};
+
+global.names = {
+    business_name: '',
+    service_name: '',
+    terminal_name: ''
 };
 
 // Module to control application life.
@@ -93,10 +99,9 @@ function createTerminalsWindow () {
 
 function createProcessQueueWindow () {
     // Create the browser window.
-    var pqHeight = process.platform !== 'darwin' ? 200 : 163;
     pqWindow = new BrowserWindow({
         width: development ? 800 : 400,
-        height: development ? 800 : pqHeight,
+        height: development ? 800 : 250,
         transparent: false,
         alwaysOnTop: true,
         icon: 'images/favicon-32x32.png'

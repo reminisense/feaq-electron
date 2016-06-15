@@ -26,6 +26,21 @@ app.controller('terminalsController', function($scope, $http) {
     $scope.selectTerminal = function(service_id, terminal_id){
         remote.getGlobal('ids').service_id = service_id;
         remote.getGlobal('ids').terminal_id = terminal_id;
+
+        //get Service Name
+        for(var service_index in $scope.services){
+            if($scope.services[service_index].service_id == service_id){
+                remote.getGlobal('names').service_name = $scope.services[service_index].name;
+            }
+        }
+
+        //get Terminal Name
+        for(var terminal_index in $scope.terminals){
+            if($scope.terminals[terminal_index].terminal_id == terminal_id){
+                remote.getGlobal('names').terminal_name = $scope.terminals[terminal_index].name;
+            }
+        }
+
         ipc.send('terminal-chosen');
     };
 

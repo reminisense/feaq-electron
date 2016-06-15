@@ -9,20 +9,32 @@
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
     <link rel="stylesheet" href="../css/star-rating.css">
+    <link rel="stylesheet" href="../css/queue.css">
 </head>
 <body ng-app="FeatherQ" ng-cloak>
 <div class="" ng-controller="queueController">
-    <div class="col-xs-12" style="min-height: 107px;">
-        <div class="col-xs-4 text-center">
-            <strong><span class="glyphicon glyphicon-user"></span> Waiting: </strong>
-            <h3>{{ numbers_in_line }}</h3>
-        </div>
-        <div class="col-xs-8 text-center">
-            <strong>Current Number: </strong>
-            <h1>{{ current_number ? current_number.priority_number : next_number }}</h1>
-            <div>
-                <div class="">
-                    <form class="star-rating-form" ng-show="current_number.email && current_number.time_called > 0">
+    <div id="queue-content">
+        <div class="panel {{ called ? 'panel-success' : 'panel-primary' }} panel-inverse">
+            <div class="panel-heading text-center">
+                <strong class="panel-title">{{ business_name }}</strong>
+            </div>
+            <div class="panel-body">
+                <div class="col-xs-5">
+                    <div class="text-left">
+                        <h5><strong>{{ service_name }}</strong></h5>
+                        <h5>{{ terminal_name }}</h5>
+                    </div>
+                    <div class="text-center">
+                        <strong class="text-center"><span class="glyphicon glyphicon-user"></span> Waiting: </strong>
+                        <h4 class="text-center">{{ numbers_in_line }}</h4>
+                    </div>
+                </div>
+                <div class="col-xs-7 text-center">
+                    <strong>Current Number: </strong>
+                    <h1>{{ current_number ? current_number.priority_number : next_number }}</h1>
+                    <div>
+                        <div class="">
+                            <form class="star-rating-form" ng-show="current_number.email && current_number.time_called > 0">
                         <span class="star-rating">
                             <input type="radio" name="rating" ng-model="rating" value="1"><i></i>
                             <input type="radio" name="rating" ng-model="rating" value="2"><i></i>
@@ -30,25 +42,29 @@
                             <input type="radio" name="rating" ng-model="rating" value="4"><i></i>
                             <input type="radio" name="rating" ng-model="rating" value="5"><i></i>
                         </span>
-                    </form>
-                </div>
-                <div class="pull-right">
-                    <div>
-                        <a href="#" ng-show="false"><span class="glyphicon glyphicon-share-alt"></span> </a>
-                        <a href="#" ng-show="false"><span class="glyphicon glyphicon-folder-open"></span> </a>
+                            </form>
+                        </div>
+                        <div class="pull-right">
+                            <div>
+                                <a href="#" ng-show="false"><span class="glyphicon glyphicon-share-alt"></span> </a>
+                                <a href="#" ng-show="false"><span class="glyphicon glyphicon-folder-open"></span> </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div ng-if="called == false">
-        <button ng-disabled="is_processing" class="col-xs-4 btn btn-primary" style="border-radius: 0;" ng-click="drop()"><span class="glyphicon glyphicon-trash"></span></button>
-        <button ng-disabled="is_processing" class="col-xs-8 btn btn-primary" style="border-radius: 0;" ng-click="callPressed()"><span class="glyphicon glyphicon-bell"></span> CALL</button>
-    </div>
-    <div ng-if="called == true">
-        <button ng-disabled="is_processing" class="col-xs-4 btn btn-success" style="border-radius: 0;" ng-click="drop()"><span class="glyphicon glyphicon-trash"></span></button>
-        <button ng-disabled="is_processing" class="col-xs-4 btn btn-success" style="border-radius: 0;" ng-click="done()"><span class="glyphicon glyphicon-ok"></span> DONE</button>
-        <button ng-disabled="is_processing" class="col-xs-4 btn btn-success" style="border-radius: 0;" ng-click="next()"><span class="glyphicon glyphicon-forward"></span> NEXT</button>
+        <div id="queue-buttons">
+            <div ng-if="called == false">
+                <button ng-disabled="is_processing" class="col-xs-4 btn btn-primary" ng-click="drop()"><span class="glyphicon glyphicon-trash"></span></button>
+                <button ng-disabled="is_processing" class="col-xs-8 btn btn-primary" ng-click="callPressed()"><span class="glyphicon glyphicon-bell"></span> CALL</button>
+            </div>
+            <div ng-if="called == true">
+                <button ng-disabled="is_processing" class="col-xs-4 btn btn-success" ng-click="drop()"><span class="glyphicon glyphicon-trash"></span></button>
+                <button ng-disabled="is_processing" class="col-xs-4 btn btn-success" ng-click="done()"><span class="glyphicon glyphicon-ok"></span> DONE</button>
+                <button ng-disabled="is_processing" class="col-xs-4 btn btn-success" ng-click="next()"><span class="glyphicon glyphicon-forward"></span> NEXT</button>
+            </div>
+        </div>
     </div>
 </div>
 </body>

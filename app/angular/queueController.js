@@ -15,6 +15,10 @@ app.controller('queueController', function($scope, $http){
     $scope.service_id = remote.getGlobal('ids').service_id;
     $scope.terminal_id = remote.getGlobal('ids').terminal_id;
 
+    $scope.business_name = remote.getGlobal('names').business_name;
+    $scope.service_name = remote.getGlobal('names').service_name;
+    $scope.terminal_name = remote.getGlobal('names').terminal_name;
+
     $scope.current_number = null;
     $scope.next_number = null;
     $scope.numbers_in_line = null;

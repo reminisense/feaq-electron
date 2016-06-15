@@ -42,10 +42,12 @@ app.controller('loginController', function($scope, $http) {
                     fileData =  JSON.parse(fileContent);
                     remote.getGlobal('ids').user_id = response.user_id;
                     remote.getGlobal('ids').business_id = fileData.business_id;
+                    $scope.businesses = response.businesses;
                     $scope.selectBusiness(fileData.business_id);
                     $scope.loading = false;
                 }else if(remote.getGlobal('ids').business_id !== null){
                     remote.getGlobal('ids').user_id = response.user_id;
+                    $scope.businesses = response.businesses;
                     $scope.selectBusiness(remote.getGlobal('ids').business_id);
                     $scope.loading = false;
                 }else if(response.user_id){
@@ -65,6 +67,14 @@ app.controller('loginController', function($scope, $http) {
 
     $scope.selectBusiness = function (business_id){
         remote.getGlobal('ids').business_id = business_id;
+
+        //get Business Name
+        for(var business_index in $scope.businesses){
+            if($scope.businesses[business_index].business_id == business_id){
+                remote.getGlobal('names').business_name = $scope.businesses[business_index].name;
+            }
+        }
+        alert(remote.getGlobal('names').business_name);
         ipc.send('login-success');
     };
 });
