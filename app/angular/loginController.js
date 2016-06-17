@@ -67,14 +67,12 @@ app.controller('loginController', function($scope, $http) {
 
     $scope.selectBusiness = function (business_id){
         remote.getGlobal('ids').business_id = business_id;
-
         //get Business Name
         for(var business_index in $scope.businesses){
             if($scope.businesses[business_index].business_id == business_id){
                 remote.getGlobal('names').business_name = $scope.businesses[business_index].name;
             }
         }
-        alert(remote.getGlobal('names').business_name);
         ipc.send('login-success');
     };
 });

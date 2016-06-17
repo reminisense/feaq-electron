@@ -10,7 +10,8 @@
   "author": "Reminisense",
   "license": "MIT",
   "devDependencies": {
-    "electron-packager": "^7.0.2",
+    "electron-builder": "^5.4.2",
+    "electron-packager": "^7.0.4",
     "electron-prebuilt": "^0.37.8"
   }
 }
