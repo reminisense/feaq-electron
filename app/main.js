@@ -1,7 +1,7 @@
 const electron = require('electron');
 const ipc = require('electron').ipcMain;
 const fs = require('fs');
-const development = true;
+const development = false;
 
 
 global.urls = {
