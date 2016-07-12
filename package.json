@@ -7,6 +7,10 @@
     "start": "electron .",
     "build": "electron-packager . FeatherQ && cp app/images/favicon-32x32.png FeatherQ.app/Contents/Resources/favicon-32x32.png"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/reminisense/feaq-electron.git"
+  },
   "author": "Reminisense",
   "license": "MIT",
   "devDependencies": {
