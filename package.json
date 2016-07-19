@@ -5,7 +5,7 @@
   "main": "app/main.js",
   "scripts": {
     "start": "electron .",
-    "build": "electron-packager . FeatherQ --platform=win32,darwin,mas --arch=all"
+    "pack": "electron-packager . FeatherQ --platform=darwin,win32 --arch=all --icon=app/images/favicon-32x32.png.icns --overwrite"
   },
   "repository": {
     "type": "git",

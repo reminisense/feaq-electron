@@ -125,7 +125,7 @@ function createProcessQueueWindow () {
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 if (process.platform === 'darwin') {
-    app.dock.setIcon('app/images/favicon-32x32.png');
+    app.dock.setIcon(__dirname + '/images/favicon-32x32.png');
 }
 
 app.on('ready', createLoginWindow);
