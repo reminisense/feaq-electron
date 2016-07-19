@@ -5,7 +5,7 @@
   "main": "app/main.js",
   "scripts": {
     "start": "electron .",
-    "build": "electron-packager . FeatherQ && cp app/images/favicon-32x32.png FeatherQ.app/Contents/Resources/favicon-32x32.png"
+    "build": "electron-packager . FeatherQ --platform=win32,darwin,mas --arch=all"
   },
   "repository": {
     "type": "git",
@@ -14,8 +14,8 @@
   "author": "Reminisense",
   "license": "MIT",
   "devDependencies": {
-    "electron-builder": "^5.4.2",
-    "electron-packager": "^7.0.4",
-    "electron-prebuilt": "^0.37.8"
+    "electron-builder": "^5.12.1",
+    "electron-packager": "^7.3.0",
+    "electron-prebuilt": "^1.2.7"
   }
 }
