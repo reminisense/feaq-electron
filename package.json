@@ -6,7 +6,7 @@
   "scripts": {
     "start": "electron .",
     "build:darwin": "electron-packager . FeatherQ --platform=darwin --arch=all --icon=app/images/favicon-32x32.png.icns --overwrite",
-    "build:win32": "electron-packager . FeatherQ --platform=win32 --arch=all --overwrite"
+    "build:win32": "electron-packager . FeatherQ --platform=win32 --arch=all --icon=app/images/favicon-32x32.png.icns --overwrite"
   },
   "repository": {
     "type": "git",
