@@ -126,14 +126,16 @@ app.controller('queueController', function($scope, $http){
         ipc.send('login-success');
     };
 
+    $scope.openForm = function(){
+        ipc.send('open-form');
+    };
+
     $scope.websocket.onopen = function(response) { // connection is open
         $scope.getNextNumber();
     };
     $scope.websocket.onmessage = function(response){
         $scope.getNextNumber();
     };
-
-
 
     $scope.sendWebsocket = function(){
         $scope.websocket.send(JSON.stringify({

@@ -17,6 +17,7 @@
   "devDependencies": {
     "electron-builder": "^5.12.1",
     "electron-packager": "^7.3.0",
-    "electron-prebuilt": "^1.2.7"
+    "electron-prebuilt": "^1.2.7",
+    "jquery": "1.12.4"
   }
 }

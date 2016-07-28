@@ -42,6 +42,7 @@ const BrowserWindow = electron.BrowserWindow;
 var mainWindow = null;
 var pqWindow = null;
 var terminalWindow = null;
+var formWindow = null;
 
 
 function createLoginWindow () {
@@ -121,6 +122,22 @@ function createProcessQueueWindow () {
     }
 }
 
+function createFormWindow(){
+    if(formWindow !== null){
+        formWindow.close();
+    }
+
+    formWindow = new BrowserWindow(global.windowProperties);
+    formWindow.loadURL('file://' + __dirname + '/views/form.html');
+
+    if(development) formWindow.webContents.openDevTools();
+
+    formWindow.on('closed', function () {
+        formWindow = null;
+    });
+
+}
+
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
@@ -131,6 +148,7 @@ if (process.platform === 'darwin') {
 app.on('ready', createLoginWindow);
 ipc.on('terminal-chosen', createProcessQueueWindow);
 ipc.on('login-success', createTerminalsWindow);
+ipc.on('open-form', createFormWindow);
 ipc.on('reset-login', function(){
     //save json file
     fs.unlink('app/settings.json', function(err){
