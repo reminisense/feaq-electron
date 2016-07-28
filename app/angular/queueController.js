@@ -4,6 +4,7 @@
 
 var ipc = require('electron').ipcRenderer;
 var remote = require('electron').remote;
+var {shell} = require('electron');
 
 var app = angular.module('FeatherQ', []);
 app.controller('queueController', function($scope, $http){
@@ -96,7 +97,7 @@ app.controller('queueController', function($scope, $http){
                     });
                 $scope.is_processing = false;
             });
-    }
+    };
 
     $scope.getNextNumber = function(){
         $scope.is_processing = true;
@@ -115,14 +116,22 @@ app.controller('queueController', function($scope, $http){
             .success(function(response){
                 $scope.sendWebsocket();
             });
-    }
+    };
+
+    $scope.viewBroadcast = function(){
+        shell.openExternal($scope.app_url + '/broadcast/business/' + $scope.business_id);
+    };
+
+    $scope.back = function(){
+        ipc.send('login-success');
+    };
 
     $scope.websocket.onopen = function(response) { // connection is open
         $scope.getNextNumber();
-    }
+    };
     $scope.websocket.onmessage = function(response){
         $scope.getNextNumber();
-    }
+    };
 
 
 

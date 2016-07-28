@@ -16,7 +16,23 @@
     <div id="queue-content">
         <div class="panel {{ called ? 'panel-success' : 'panel-primary' }} panel-inverse">
             <div class="panel-heading text-center">
-                <strong class="panel-title">{{ business_name }}</strong>
+                <div class="row">
+                    <div class="text-left col-xs-4">
+                        <a class="panel-title" href="#" title="Back" ng-click="back()">
+                            <span class="glyphicon glyphicon-arrow-left"></span>
+                            <small>Back</small>
+                        </a>
+                    </div>
+                    <div class="col-xs-4 text-center">
+                        <strong class="panel-title">{{ business_name }}</strong>
+                    </div>
+                    <div class="text-right col-xs-4">
+                        <a class="panel-title" href="#" title="View Broadcast Screen" ng-click="viewBroadcast()">
+                            <small>View</small>
+                            <span class="glyphicon glyphicon-th-large"></span>
+                        </a>
+                    </div>
+                </div>
             </div>
             <div class="panel-body">
                 <div class="col-xs-5">

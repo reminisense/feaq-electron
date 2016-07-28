@@ -57,7 +57,18 @@ app.controller('terminalsController', function($scope, $http) {
             }
         }
         return assigned;
-    }
+    };
+
+    $scope.back = function(){
+        remote.getGlobal('ids').business_id = null;
+        $http.post($scope.app_url + '/fb/laravel-logout').success(function(){
+            remote.getGlobal('ids').user_id = null;
+            remote.getGlobal('ids').business_id = null;
+            remote.getGlobal('ids').service_id = null;
+            remote.getGlobal('ids').terminal_id = null;
+            ipc.send('reset-login');
+        });
+    };
 
     $scope.getServices();
 

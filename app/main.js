@@ -1,7 +1,7 @@
 const electron = require('electron');
 const ipc = require('electron').ipcMain;
 const fs = require('fs');
-const development = false;
+const development = true;
 
 
 global.urls = {
@@ -103,7 +103,7 @@ function createProcessQueueWindow () {
         width: development ? 800 : 400,
         height: development ? 800 : 250,
         transparent: false,
-        alwaysOnTop: true,
+        alwaysOnTop: false,
         icon: 'images/favicon-32x32.png'
     });
     pqWindow.loadURL('file://' + __dirname + '/views/index.html');
@@ -131,6 +131,17 @@ if (process.platform === 'darwin') {
 app.on('ready', createLoginWindow);
 ipc.on('terminal-chosen', createProcessQueueWindow);
 ipc.on('login-success', createTerminalsWindow);
+ipc.on('reset-login', function(){
+    //save json file
+    fs.unlink('app/settings.json', function(err){
+        if(err == undefined){
+            console.log("Settings reset");
+        }else{
+            console.log("Settings not deleted");
+        }
+    });
+    createLoginWindow();
+});
 
 // Quit when all windows are closed.
 app.on('window-all-closed', function () {

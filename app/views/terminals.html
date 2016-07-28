@@ -11,6 +11,10 @@
 <body ng-app="FeatherQ">
 <div ng-controller="terminalsController">
     <div class="clearfix">
+        <a class="pull-left" href="#" title="Back" ng-click="back()">
+            <span class="glyphicon glyphicon-arrow-left"></span>
+            <small>Back</small>
+        </a>
         <div ng-repeat="service in services">
             <div class="text-center"><h4>{{ service.name }}</h4></div>
             <div class="row" ng-repeat="terminal in service.terminals" ng-if="isAssignedUser(user_id, terminal.terminal_id)">
