@@ -5,7 +5,7 @@ const development = true;
 
 
 global.urls = {
-    app_url: 'http://four.featherq.com',
+    app_url: 'http://localhost:8000',
     websocket_url: "ws://188.166.234.33:443/socket/server.php"
 };
 
@@ -28,6 +28,10 @@ global.names = {
     business_name: '',
     service_name: '',
     terminal_name: ''
+};
+
+global.priorityNumbers = {
+    current_number: null
 };
 
 // Module to control application life.

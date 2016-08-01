@@ -127,6 +127,8 @@ app.controller('queueController', function($scope, $http){
     };
 
     $scope.openForm = function(){
+        console.log($scope.current_number);
+        remote.getGlobal('priorityNumbers').current_number = $scope.current_number;
         ipc.send('open-form');
     };
 

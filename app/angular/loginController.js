@@ -75,4 +75,8 @@ app.controller('loginController', function($scope, $http) {
         }
         ipc.send('login-success');
     };
+
+    if(remote.getGlobal('ids').user_id != null){
+        $scope.getAssignedBusinesses();
+    }
 });
