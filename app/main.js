@@ -105,7 +105,7 @@ function createTerminalsWindow () {
 function createProcessQueueWindow () {
     // Create the browser window.
     pqWindow = new BrowserWindow({
-        width: development ? 800 : 400,
+        width: development ? 800 : 500,
         height: development ? 800 : 250,
         transparent: false,
         alwaysOnTop: false,

@@ -13,11 +13,11 @@
 <div class="clearfix" ng-controller="formController">
     <ul id="tab-forms" class="clearfix nav nav-tabs">
         <li role="presentation" class="{{ $index == 0 ? 'active' : '' }}" ng-repeat="form_record in current_number.form_records">
-            <a data-toggle="tab" href="#{{ form_record.form_name }}">{{ form_record.form_name }}</a>
+            <a data-toggle="tab" href="#form-{{ $index }}">{{ form_record.form_name }}</a>
         </li>
     </ul>
     <div id="tab-forms-table" class="tab-content">
-        <div role="tabpanel" id="{{ form_record.form_name }}" class="tab-pane fade {{ $index == 0 ? 'active in' : '' }}" ng-repeat="form_record in current_number.form_records">
+        <div role="tabpanel" id="form-{{ $index }}" class="tab-pane fade {{ $index == 0 ? 'active in' : '' }}" ng-repeat="form_record in current_number.form_records">
             <table class="table">
                 <thead>
                 <tr>

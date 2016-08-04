@@ -48,10 +48,6 @@
                 </div>
                 <div class="col-xs-7 text-center">
                     <strong>Current Number: </strong>
-                    <a href="#" class="btn btn-xs btn-primary btn-links" ng-click="openForm()">
-                        <span class="glyphicon glyphicon-list-alt"></span>
-                        View Form
-                    </a>
                     <h1>{{ current_number ? current_number.priority_number : next_number }}</h1>
                     <div>
                         <div class="">
@@ -65,12 +61,10 @@
                         </span>
                             </form>
                         </div>
-                        <div class="pull-right">
-                            <div>
-                                <a href="#" ng-show="false"><span class="glyphicon glyphicon-share-alt"></span> </a>
-                                <a href="#" ng-show="false"><span class="glyphicon glyphicon-folder-open"></span> </a>
-                            </div>
-                        </div>
+                        <a href="#" class="btn btn-xs btn-primary btn-links" ng-click="openForm()" ng-if="current_number.form_records.length > 0">
+                            <span class="glyphicon glyphicon-list-alt"></span>
+                            View Form
+                        </a>
                     </div>
                 </div>
             </div>
