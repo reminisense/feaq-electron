@@ -48,7 +48,7 @@
                 </div>
                 <div class="col-xs-7 text-center">
                     <strong>Current Number: </strong>
-                    <h1>{{ current_number ? current_number.priority_number : next_number }}</h1>
+                    <h1>{{ current_number ? current_number.priority_number : (number_prefix + next_number + number_suffix) }}</h1>
                     <div>
                         <div class="">
                             <form class="star-rating-form" ng-show="current_number.email && current_number.time_called > 0">

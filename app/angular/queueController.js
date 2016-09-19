@@ -21,7 +21,11 @@ app.controller('queueController', function($scope, $http){
     $scope.terminal_name = remote.getGlobal('names').terminal_name;
 
     $scope.current_number = null;
-    $scope.next_number = null;
+
+    $scope.number_prefix = '';
+    $scope.number_suffix = '';
+    $scope.next_number = 0;
+
     $scope.numbers_in_line = null;
     $scope.called = false;
     $scope.rating = 3;
@@ -93,6 +97,9 @@ app.controller('queueController', function($scope, $http){
                     .success(function(response){
                         $scope.current_number = response.numbers.unprocessed_numbers[0];
                         $scope.next_number = response.numbers.next_number;
+                        $scope.number_prefix = response.numbers.number_prefix;
+                        $scope.number_suffix = response.numbers.number_suffix;
+
                         $scope.callPressed();
                     });
                 $scope.is_processing = false;
