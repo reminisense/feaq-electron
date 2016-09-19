@@ -11,42 +11,46 @@
 </head>
 <body ng-app="FeatherQ" ng-cloak>
 <div class="clearfix" ng-controller="formController">
-    <ul id="tab-forms" class="clearfix nav nav-tabs">
-        <li role="presentation" class="{{ $index == 0 ? 'active' : '' }}" ng-repeat="form_record in current_number.form_records">
-            <a data-toggle="tab" href="#form-{{ $index }}">{{ form_record.form_name }}</a>
-        </li>
-    </ul>
-    <div id="tab-forms-table" class="tab-content">
-        <div role="tabpanel" id="form-{{ $index }}" class="tab-pane fade {{ $index == 0 ? 'active in' : '' }}" ng-repeat="form_record in current_number.form_records">
-            <table class="table">
-                <thead>
-                <tr>
-                    <th>Field</th>
-                    <th>Value</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>Name</td>
-                    <td>{{ current_number.name }}</td>
-                </tr>
-                <tr>
-                    <td>Email</td>
-                    <td>{{ current_number.email }}</td>
-                </tr>
-                <tr>
-                    <td>Phone</td>
-                    <td>{{ current_number.phone }}</td>
-                </tr>
-                <tr ng-repeat="(key, value) in form_record.form_data">
-                    <td>{{ key }}</td>
-                    <td>{{ value }}</td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
+    <div class="panel">
+        <div class="panel-body">
+            <ul id="tab-forms" class="clearfix nav nav-tabs">
+                <li role="presentation" class="{{ $index == 0 ? 'active' : '' }}" ng-repeat="form_record in current_number.form_records">
+                    <a data-toggle="tab" href="#form-{{ $index }}">{{ form_record.form_name }}</a>
+                </li>
+            </ul>
+            <div id="tab-forms-table" class="tab-content">
+                <div role="tabpanel" id="form-{{ $index }}" class="tab-pane fade {{ $index == 0 ? 'active in' : '' }}" ng-repeat="form_record in current_number.form_records">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>Field</th>
+                            <th>Value</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>Name</td>
+                            <td>{{ current_number.name }}</td>
+                        </tr>
+                        <tr>
+                            <td>Email</td>
+                            <td>{{ current_number.email }}</td>
+                        </tr>
+                        <tr>
+                            <td>Phone</td>
+                            <td>{{ current_number.phone }}</td>
+                        </tr>
+                        <tr ng-repeat="(key, value) in form_record.form_data">
+                            <td>{{ key }}</td>
+                            <td>{{ value }}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div><!-- end panel body-->
+    </div><!-- end panel-->
+</div><!-- end formController-->
 </body>
 <script>
     // You can also require other files to run in this process

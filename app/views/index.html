@@ -50,21 +50,23 @@
                     <strong>Current Number: </strong>
                     <h1>{{ current_number ? current_number.priority_number : (number_prefix + next_number + number_suffix) }}</h1>
                     <div>
-                        <div class="">
+                        <div class="{{ current_number.form_records.length > 0 ? 'col-xs-6' : 'col-xs-12'}}">
                             <form class="star-rating-form" ng-show="current_number.email && current_number.time_called > 0">
-                        <span class="star-rating">
-                            <input type="radio" name="rating" ng-model="rating" value="1"><i></i>
-                            <input type="radio" name="rating" ng-model="rating" value="2"><i></i>
-                            <input type="radio" name="rating" ng-model="rating" value="3"><i></i>
-                            <input type="radio" name="rating" ng-model="rating" value="4"><i></i>
-                            <input type="radio" name="rating" ng-model="rating" value="5"><i></i>
-                        </span>
+                                <span class="star-rating">
+                                    <input type="radio" name="rating" ng-model="rating" value="1"><i></i>
+                                    <input type="radio" name="rating" ng-model="rating" value="2"><i></i>
+                                    <input type="radio" name="rating" ng-model="rating" value="3"><i></i>
+                                    <input type="radio" name="rating" ng-model="rating" value="4"><i></i>
+                                    <input type="radio" name="rating" ng-model="rating" value="5"><i></i>
+                                </span>
                             </form>
                         </div>
-                        <a href="#" class="btn btn-xs btn-primary btn-links" ng-click="openForm()" ng-if="current_number.form_records.length > 0">
-                            <span class="glyphicon glyphicon-list-alt"></span>
-                            View Form
-                        </a>
+                        <div class="{{ current_number.email && current_number.time_called > 0 ? 'col-xs-6' : 'col-xs-6'}}">
+                            <a href="#" class="btn btn-xs btn-primary btn-links" ng-click="openForm()" ng-show="current_number.form_records.length > 0">
+                                <span class="glyphicon glyphicon-list-alt"></span>
+                                View Form
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>

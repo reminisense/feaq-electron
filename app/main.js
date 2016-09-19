@@ -1,7 +1,7 @@
 const electron = require('electron');
 const ipc = require('electron').ipcMain;
 const fs = require('fs');
-const development = true;
+const development = false;
 
 
 global.urls = {
@@ -131,7 +131,13 @@ function createFormWindow(){
         formWindow.close();
     }
 
-    formWindow = new BrowserWindow(global.windowProperties);
+    formWindow = new BrowserWindow({
+        width: development ? 800 : 500,
+        height: development ? 800 : 500,
+        transparent: false,
+        alwaysOnTop: false,
+        icon: 'images/favicon-32x32.png'
+    });
     formWindow.loadURL('file://' + __dirname + '/views/form.html');
 
     if(development) formWindow.webContents.openDevTools();
